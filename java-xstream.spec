@@ -5,7 +5,7 @@
 %include	/usr/lib/rpm/macros.java
 
 %define		srcname	xstream
-Summary:	XStream
+Summary:	Simple library to serialize objects to XML and back again.
 Name:		java-xstream
 Version:	1.3.1
 Release:	0.1
@@ -24,11 +24,10 @@ BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jpackage-utils
 BuildArch:	noarch
-ExclusiveArch:  i586 i686 pentium3 pentium4 athlon %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-XStream
+XStream is a simple library to serialize objects to XML and back again.
 
 %package javadoc
 Summary:	Online manual for %{srcname}
