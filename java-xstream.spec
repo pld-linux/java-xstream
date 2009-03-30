@@ -1,7 +1,6 @@
 #
 # Conditional build:
 %bcond_without	javadoc		# don't build javadoc
-%bcond_with	tests		# run tests (takes long time)
 
 %include	/usr/lib/rpm/macros.java
 
@@ -16,14 +15,16 @@ Source0:	http://repository.codehaus.org/com/thoughtworks/xstream/xstream-distrib
 # Source0-md5:	3a129d9bdf88e385424a917c59e284e2
 URL:		http://xstream.codehaus.org/
 BuildRequires:	ant
-%{?with_tests:BuildRequires:	ant-junit >= 1.5}
+BuildRequires:	ant-junit
+BuildRequires:	ant-trax
 BuildRequires:	java-sun
 BuildRequires:	jpackage-utils
-%{?with_tests:BuildRequires:	junit >= 3.8.1}
+BuildRequires:	junit
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jpackage-utils
 BuildArch:	noarch
+ExclusiveArch:  i586 i686 pentium3 pentium4 athlon %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -50,19 +51,19 @@ Javadoc pour %{srcname}.
 %build
 
 cd xstream
-%ant jar %{?with_javadoc:javadoc}
+%ant all
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_javadir}
 
-cp -a target/commons-io-%{version}.jar $RPM_BUILD_ROOT%{_javadir}
-ln -sf commons-io-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/commons-io.jar
+cp -a xstream/target/xstream-SNAPSHOT.jar $RPM_BUILD_ROOT%{_javadir}/%{srcname}-%{version}.jar
+ln -sf %{srcname}-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/%{srcname}.jar
 
 # javadoc
 %if %{with javadoc}
 install -d $RPM_BUILD_ROOT%{_javadocdir}/%{srcname}-%{version}
-cp -a target/apidocs/* $RPM_BUILD_ROOT%{_javadocdir}/%{srcname}-%{version}
+cp -a xstream/target/javadoc/* $RPM_BUILD_ROOT%{_javadocdir}/%{srcname}-%{version}
 ln -s %{srcname}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{srcname} # ghost symlink
 %endif
 
