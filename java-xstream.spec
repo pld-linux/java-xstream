@@ -1,6 +1,5 @@
 # TODO:
 # - get rid of bundled jars. Use system libraries.
-# - build on gcj (is it possible? It requires requires sun.reflect.ReflectionFactory)
 #
 # Conditional build:
 %bcond_without	javadoc		# don't build javadoc
@@ -20,7 +19,7 @@ URL:		http://xstream.codehaus.org/
 BuildRequires:	ant
 BuildRequires:	ant-junit
 BuildRequires:	ant-trax
-BuildRequires:	java-sun
+BuildRequires:	jdk
 BuildRequires:	jpackage-utils
 BuildRequires:	junit
 BuildRequires:	rpm-javaprov
