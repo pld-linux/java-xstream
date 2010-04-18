@@ -7,7 +7,7 @@
 %include	/usr/lib/rpm/macros.java
 
 %define		srcname	xstream
-Summary:	Simple library to serialize objects to XML and back again.
+Summary:	Simple library to serialize objects to XML and back again
 Name:		java-xstream
 Version:	1.3.1
 Release:	0.1
@@ -29,7 +29,8 @@ BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-XStream is a simple library to serialize objects to XML and back again.
+XStream is a simple library to serialize objects to XML and back
+again.
 
 %package javadoc
 Summary:	Online manual for %{srcname}
