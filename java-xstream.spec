@@ -4,7 +4,6 @@
 # Conditional build:
 %bcond_without	javadoc		# don't build javadoc
 
-%include	/usr/lib/rpm/macros.java
 
 %define		srcname	xstream
 Summary:	Simple library to serialize objects to XML and back again
