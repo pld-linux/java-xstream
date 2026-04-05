@@ -4,12 +4,14 @@
 # Conditional build:
 %bcond_without	javadoc		# don't build javadoc
 
+%{?use_default_jdk:%use_default_jdk 8}
+
 
 %define		srcname	xstream
 Summary:	Simple library to serialize objects to XML and back again
 Name:		java-xstream
 Version:	1.3.1
-Release:	0.1
+Release:	2
 License:	Apache v2.0
 Group:		Libraries/Java
 Source0:	http://repository.codehaus.org/com/thoughtworks/xstream/xstream-distribution/%{version}/xstream-distribution-%{version}-src.zip
@@ -17,12 +19,11 @@ Source0:	http://repository.codehaus.org/com/thoughtworks/xstream/xstream-distrib
 URL:		http://xstream.codehaus.org/
 BuildRequires:	ant
 BuildRequires:	ant-junit
-BuildRequires:	ant-trax
-BuildRequires:	jdk
+%buildrequires_jdk
 BuildRequires:	jpackage-utils
-BuildRequires:	junit
+BuildRequires:	java-junit
 BuildRequires:	rpm-javaprov
-BuildRequires:	rpmbuild(macros) >= 1.300
+BuildRequires:	rpmbuild(macros) >= 1.556
 BuildRequires:	unzip
 Requires:	jpackage-utils
 BuildArch:	noarch
@@ -53,7 +54,7 @@ Javadoc pour %{srcname}.
 %build
 
 cd xstream
-%ant all
+%ant clean compile benchmark:compile jar %{?with_javadoc:javadoc}
 
 %install
 rm -rf $RPM_BUILD_ROOT
